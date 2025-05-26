@@ -16,6 +16,90 @@
   </head>
   <body>
     <!-- Navigation Section Start -->
+    <style>
+      #sidebar {
+        height: 100vh;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: -250px;
+        background: #333;
+        color: #fff;
+        overflow-y: auto;
+        transition: left 0.3s ease;
+        z-index: 9999;
+        padding-top: 60px; /* so below navbar */
+      }
+      #sidebar.active {
+        left: 0;
+      }
+      #sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+      #sidebar ul li {
+        padding: 15px 20px;
+        border-bottom: 1px solid #444;
+      }
+      #sidebar ul li a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+      }
+      #sidebar ul li a:hover {
+        background: #555;
+      }
+
+      /* Overlay when sidebar open */
+      #sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 9998;
+      }
+      #sidebar-overlay.active {
+        display: block;
+      }
+
+      /* Hamburger icon */
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: #333;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        z-index: 10000;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .menu {
+          display: none !important;
+        }
+        .hamburger {
+          display: block;
+        }
+        /* Adjust logo margin so hamburger fits */
+        .logo {
+          position: relative;
+          z-index: 10001;
+        }
+        /* Fix navbar padding */
+        #site-top-nav .container {
+          position: relative;
+          padding-right: 60px; /* to accommodate hamburger */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Section Start -->
     <header class="navbar">
       <nav id="site-top-nav" class="navbar-menu navbar-fixed-top">
         <div class="container">
@@ -25,6 +109,12 @@
               <img src="img/logo.png" alt="Logo" class="img-responsive" />
             </a>
           </div>
+
+          <!-- Hamburger for mobile -->
+          <div id="hamburger" class="hamburger">
+            <i class="fa fa-bars"></i>
+          </div>
+
           <!-- Main Menu -->
           <div class="menu text-right">
             <ul>
@@ -69,30 +159,30 @@
                     <tr>
                       <td><img src="img/food/p1.jpg" alt="Food" /></td>
                       <td>Pizza</td>
-                      <td>199.00</td>
+                      <td>$ 8.00</td>
                       <td>1</td>
-                      <td>199.00</td>
+                      <td>$ 8.00</td>
                       <td><a href="#" class="btn-delete">&times;</a></td>
                     </tr>
                     <tr>
                       <td><img src="img/food/s1.jpg" alt="Food" /></td>
                       <td>Sandwich</td>
-                      <td>99.00</td>
+                      <td>$ 8.00</td>
                       <td>1</td>
-                      <td>99.00</td>
+                      <td>$ 8.00</td>
                       <td><a href="#" class="btn-delete">&times;</a></td>
                     </tr>
                     <tr>
                       <td><img src="img/food/b1.jpg" alt="Food" /></td>
-                      <td>Burger</td>
-                      <td>79.00</td>
+                      <td>Burder</td>
+                      <td>$ 8.00</td>
                       <td>1</td>
-                      <td>99.00</td>
+                      <td>$ 8.00</td>
                       <td><a href="#" class="btn-delete">&times;</a></td>
                     </tr>
                     <tr>
                       <th colspan="4">Total</th>
-                      <th>377.00$</th>
+                      <th>$24.00$</th>
                       <th></th>
                     </tr>
                   </table>
@@ -105,6 +195,20 @@
       </nav>
     </header>
     <!-- Navigation Section End -->
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="foods.html">Foods</a></li>
+        <li><a href="order.html">Order</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+    <div id="sidebar-overlay"></div>
+
 
     <!-- Food Search Section Start -->
     <section class="food-search text-center">
