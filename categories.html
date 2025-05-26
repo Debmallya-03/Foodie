@@ -13,6 +13,89 @@
     <link rel="stylesheet" href="css/hover-min.css" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      /* Sidebar styles */
+      #sidebar {
+        height: 100vh;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: -250px;
+        background: #333;
+        color: #fff;
+        overflow-y: auto;
+        transition: left 0.3s ease;
+        z-index: 9999;
+        padding-top: 60px; /* so below navbar */
+      }
+      #sidebar.active {
+        left: 0;
+      }
+      #sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+      #sidebar ul li {
+        padding: 15px 20px;
+        border-bottom: 1px solid #444;
+      }
+      #sidebar ul li a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+      }
+      #sidebar ul li a:hover {
+        background: #555;
+      }
+
+      /* Overlay when sidebar open */
+      #sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 9998;
+      }
+      #sidebar-overlay.active {
+        display: block;
+      }
+
+      /* Hamburger icon */
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: #333;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        z-index: 10000;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .menu {
+          display: none !important;
+        }
+        .hamburger {
+          display: block;
+        }
+        /* Adjust logo margin so hamburger fits */
+        .logo {
+          position: relative;
+          z-index: 10001;
+        }
+        /* Fix navbar padding */
+        #site-top-nav .container {
+          position: relative;
+          padding-right: 60px; /* to accommodate hamburger */
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Navigation Section Start -->
@@ -25,6 +108,12 @@
               <img src="img/logo.png" alt="Logo" class="img-responsive" />
             </a>
           </div>
+
+          <!-- Hamburger for mobile -->
+          <div id="hamburger" class="hamburger">
+            <i class="fa fa-bars"></i>
+          </div>
+
           <!-- Main Menu -->
           <div class="menu text-right">
             <ul>
@@ -105,6 +194,19 @@
       </nav>
     </header>
     <!-- Navigation Section End -->
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="foods.html">Foods</a></li>
+        <li><a href="order.html">Order</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+    <div id="sidebar-overlay"></div>
 
     <!-- Category Section Start -->
     <section class="categories">
@@ -242,19 +344,30 @@
     <!-- Copyright Section start -->
     <section class="copyright">
       <div class="container text-center">
-        <p>All rights reserved. Design By <a href="#">Sufal Basak</a></p>
+        <p>
+          © Copyright 2022. Designed and Developed by
+          <a href="https://www.linkedin.com/in/debmallyabhandari"
+            >Debmallya Bhandari</a
+          >
+        </p>
       </div>
-      <a id="back-to-top" class="btn-primary">
-        <i class="fa fa-angle-double-up"></i>
-      </a>
     </section>
     <!-- Copyright Section End -->
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <!-- Jquery UI -->
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <!-- Custom JS -->
-    <script src="js/custom.js"></script>
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("sidebar-overlay");
+
+      hamburger.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+    </script>
   </body>
 </html>
